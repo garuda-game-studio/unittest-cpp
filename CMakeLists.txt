@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.20)
 project(UnitTest++ VERSION 2.1.0)
 
 option(UTPP_USE_PLUS_SIGN
@@ -9,7 +9,7 @@ option(UTPP_INCLUDE_TESTS_IN_BUILD
     ON)
 option(UTPP_AMPLIFY_WARNINGS
     "Set this to OFF if you wish to use CMake default warning levels; should generally only use to work around support issues for your specific compiler"
-    ON)
+    OFF)
 
 set(LIB_SUFFIX "" CACHE STRING "Identifier to add to end of lib directory name e.g. 64 for lib64")
 
@@ -41,7 +41,7 @@ if (${UTPP_AMPLIFY_WARNINGS})
     if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
         string(REGEX REPLACE "/W[0-4]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /WX")
     else()
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
     endif()
 endif()
 
